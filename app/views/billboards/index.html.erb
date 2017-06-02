@@ -1,0 +1,16 @@
+<h1>Billboards</h1>
+<% if @billboards.empty? %>
+    <h3>You don't have any billboards to display.</h3>
+<% else %>
+    <% @billboards.each do |billboard| %>
+        <%= link_to billboard.name, billboard_path(billboard) %>
+        <span> --- </span>
+        <%= link_to 'Edit', edit_billboard_path(billboard) %>
+        <span> --- </span>
+        <%= link_to 'Delete', billboard_path(billboard), method: :delete %>
+        <br>
+    <% end %>
+<% end %>
+<br>
+<%= link_to 'New Billboard', new_billboard_path %>
+

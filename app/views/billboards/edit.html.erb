@@ -1,0 +1,9 @@
+<h1>Edit Billboard <%= @billboard.name %></h1>
+
+<%= form_for @billboard do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br>
+    <br>
+    <%= f.submit %>
+<% end %>

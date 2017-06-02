@@ -1,0 +1,18 @@
+<h1>Artists</h1>
+
+<% if @artists.empty? %>
+    <h3>You don't have any artists to display.</h3>
+<% else %>
+    <% @artists.each do |artist| %>
+    <%= link_to artist.name, artist_path(artist) %>
+    <span> --- </span>
+    <%= link_to 'Edit', edit_artist_path(artist) %>
+    <span> --- </span>
+    <%= link_to 'Delete', artist_path(artist), method: :delete %>
+    <% end %>
+<% end %>
+<br>
+<br>
+<%= link_to  'Back to Billboards', billboards_path %>
+<%= link_to 'Create New Artist', new_artist_path %>
+

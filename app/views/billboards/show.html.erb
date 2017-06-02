@@ -1,0 +1,29 @@
+<h1>Billboard: <%= @billboard.name %></h1>
+
+<h3>Songs:</h3>
+
+<% if @billboard.songs.empty? %>
+    <h3>You have no songs assigned to this billboard.</h3>
+<% else %>
+    <ol>
+        <% @billboard.songs.each do |song| %>
+        <li>
+            <%= song.title %> by <%= Artist.find(song.artist_id) %>
+        </li>
+        <% end %>
+    </ol>
+<% end %>
+
+Add Song to Billboard:
+
+<ol>
+    <% Song.all.each do |song| %>
+        <li>
+            <%= song.title %> by <%= Artist.find(Song.find(song.id).artist_id).name %>
+            <%= link_to 'Add', :controller => :billboard_controller, :action => :add %>
+        </li>
+    <% end %>
+</ol>
+
+
+<%= link_to 'Back to Billboard List', billboards_path %>
