@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
   root 'artists#index'
 
-  #patch 'billboard/:id/add' => 'billboards#add', as: :add_tobillboard
   resources :artists do
     resources :songs
   end
@@ -14,5 +13,4 @@ Rails.application.routes.draw do
   end
 
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
