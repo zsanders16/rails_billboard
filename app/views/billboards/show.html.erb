@@ -8,11 +8,12 @@
     <ol>
         <% @billboard.songs.each do |song| %>
         <li>
-            <%= song.title %> by <%= Artist.find(song.artist_id) %>
+            <%= song.title %> by <%= Artist.find(Song.find(song.id).artist_id).name %>
         </li>
         <% end %>
     </ol>
 <% end %>
+
 
 Add Song to Billboard:
 
@@ -20,10 +21,9 @@ Add Song to Billboard:
     <% Song.all.each do |song| %>
         <li>
             <%= song.title %> by <%= Artist.find(Song.find(song.id).artist_id).name %>
-            <%= link_to 'Add', :controller => :billboard_controller, :action => :add %>
+            <%= link_to "Add", billboard_song_add_path(@billboard, song), method: :put %>
         </li>
     <% end %>
 </ol>
-
 
 <%= link_to 'Back to Billboard List', billboards_path %>

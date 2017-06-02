@@ -41,12 +41,7 @@ class BillboardsController < ApplicationController
     redirect_to billboards_path
   end  
 
-  def add
-    binding.pry
-
-    # @billboard = 
-    # song = 
-  end
+  
   
 
   private

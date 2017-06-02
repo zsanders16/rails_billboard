@@ -2,13 +2,15 @@ Rails.application.routes.draw do
   
   root 'artists#index'
 
-  patch 'add', to: 'billboards#add'
+  #patch 'billboard/:id/add' => 'billboards#add', as: :add_tobillboard
   resources :artists do
     resources :songs
   end
   
   resources :billboards do
-    resources :songs
+    resources :songs do
+      put :add
+      end
   end
 
 
