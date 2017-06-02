@@ -1,7 +1,7 @@
 require 'pry'
 
 class SongsController < ApplicationController
-
+    before_action :find_artist, only: [:destroy, :add]
 
     def create
         @artist = Artist.find(params[:artist_id])
@@ -11,13 +11,11 @@ class SongsController < ApplicationController
     end
 
     def destroy
-        @song = Song.find(params[:id])
         @song.destroy
         redirect_to artist_path(params[:artist_id])
     end
 
     def add
-        song = Song.find(params[:song_id])
         song.billboard_id = params[:billboard_id]
         song.save
 
@@ -29,5 +27,10 @@ class SongsController < ApplicationController
         def song_params
             params.require(:song).permit(:title)
         end
+
+        def find_artist
+            song = Song.find(params[:song_id])
+        end
+        
 
 end

@@ -1,12 +1,13 @@
 require 'pry'
 class BillboardsController < ApplicationController
+
+  before_action :find_billboard, only: [:show, :edit, :update, :destroy]
+
   def index
     @billboards = Billboard.all
   end
 
   def show
-    @billboard = Billboard.find(params[:id])
-
   end
 
   def new
@@ -23,11 +24,9 @@ class BillboardsController < ApplicationController
   end
 
   def edit
-    @billboard = Billboard.find(params[:id])
   end
 
   def update
-    @billboard = Billboard.find(params[:id])
     if @billboard.update(billboard_params)
       redirect_to billboard_path(@billboard)
     else
@@ -36,7 +35,6 @@ class BillboardsController < ApplicationController
   end
 
   def destroy
-    @billboard = Billboard.find(params[:id])
     @billboard.destroy
     redirect_to billboards_path
   end  
@@ -49,4 +47,9 @@ class BillboardsController < ApplicationController
     def billboard_params
       params.require(:billboard).permit(:name)
     end
+
+    def find_billboard
+      @billboard = Billboard.find(params[:id])
+    end
+    
 end
